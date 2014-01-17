@@ -30,13 +30,14 @@ import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
-import javax.mail.search.SearchTerm;
+import javax.mail.search.FlagTerm;
 
 /**
  * An IMAP mail folder
  *
  * @author <a href="mailto:scott.stark@jboss.org">Scott Stark</a>
  * @author <a href="mailto:jesper.pedersen@jboss.org">Jesper Pedersen</a>
+ * @author <a href="mailto:mluksa@redhat.com">Marko Luksa</a>
  */
 public class IMAPMailFolder extends MailFolder {
     /**
@@ -56,18 +57,7 @@ public class IMAPMailFolder extends MailFolder {
      * @throws MessagingException Thrown if there is an error
      */
     protected Message[] getMessages(Folder folder) throws MessagingException {
-        Message[] result = folder.search(new SearchTerm() {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public boolean match(Message msg) {
-                try {
-                    return !msg.isSet(Flag.SEEN);
-                } catch (MessagingException e) {
-                    return false;
-                }
-            }
-        });
+        Message[] result = folder.search(new FlagTerm(new Flags(Flag.SEEN), false));
 
         if (result != null && result.length > 0) { return result; }
 
