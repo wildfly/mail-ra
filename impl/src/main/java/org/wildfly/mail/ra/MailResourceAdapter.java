@@ -29,6 +29,7 @@ import javax.resource.NotSupportedException;
 import javax.resource.ResourceException;
 import javax.resource.spi.ActivationSpec;
 import javax.resource.spi.BootstrapContext;
+import javax.resource.spi.Connector;
 import javax.resource.spi.ResourceAdapter;
 import javax.resource.spi.ResourceAdapterInternalException;
 import javax.resource.spi.endpoint.MessageEndpointFactory;
@@ -43,6 +44,32 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author <a href="mailto:scott.stark@jboss.org">Scott Stark</a>
  * @author <a href="mailto:jesper.pedersen@jboss.org">Jesper Pedersen</a>
  */
+@Connector(
+    displayName = "JavaMail Adapter",
+    description = "WildFly JavaMail Resource Adapter",
+    vendorName = "Red Hat, Inc.",
+    eisType = "JavaMail Adapter",
+    licenseRequired = true,
+    licenseDescription = "JBoss, Home of Professional Open Source.\n" +
+        "Copyright 2014, Red Hat, Inc., and individual contributors\n" +
+        "as indicated by the @author tags. See the copyright.txt file in the\n" +
+        "distribution for a full listing of individual contributors.\n" +
+        "\n" +
+        "This is free software; you can redistribute it and/or modify it\n" +
+        "under the terms of the GNU Lesser General Public License as\n" +
+        "published by the Free Software Foundation; either version 2.1 of\n" +
+        "the License, or (at your option) any later version.\n" +
+        "\n" +
+        "This software is distributed in the hope that it will be useful,\n" +
+        "but WITHOUT ANY WARRANTY; without even the implied warranty of\n" +
+        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU\n" +
+        "Lesser General Public License for more details.\n" +
+        "\n" +
+        "You should have received a copy of the GNU Lesser General Public\n" +
+        "License along with this software; if not, write to the Free\n" +
+        "Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA\n" +
+        "02110-1301 USA, or see the FSF site: http://www.fsf.org.\n"
+)
 public class MailResourceAdapter implements ResourceAdapter {
     /**
      * The logger

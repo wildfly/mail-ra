@@ -24,7 +24,9 @@ package org.wildfly.mail.ra;
 
 import java.io.Serializable;
 import javax.resource.ResourceException;
+import javax.resource.spi.Activation;
 import javax.resource.spi.ActivationSpec;
+import javax.resource.spi.ConfigProperty;
 import javax.resource.spi.InvalidPropertyException;
 import javax.resource.spi.ResourceAdapter;
 
@@ -37,6 +39,7 @@ import javax.resource.spi.ResourceAdapter;
  * @author <a href="mailto:jesper.pedersen@jboss.org">Jesper Pedersen</a>
  * @author <a href="mailto:mluksa@redhat.com">Marko Luksa</a>
  */
+@Activation(messageListeners = {MailListener.class})
 public class MailActivationSpec implements ActivationSpec, Serializable {
     /**
      * @since 1.0
@@ -51,62 +54,74 @@ public class MailActivationSpec implements ActivationSpec, Serializable {
     /**
      * The mail server hostname/address
      */
+    @ConfigProperty
     private String mailServer = "mailhost";
 
     /**
      * The mail store protocol
      */
+    @ConfigProperty
     private String storeProtocol = "imap";
 
     /**
      * The mail folder name
      */
+    @ConfigProperty
     private String mailFolder;
 
     /**
      * The message selector
      */
+    @ConfigProperty
     private String messageSelector;
 
     /**
      * The mail store user
      */
+    @ConfigProperty
     private String userName;
 
     /**
      * The mail store password
      */
+    @ConfigProperty(confidential = true)
     private String password;
 
     /**
      * The new messages check delay in MS
      */
-    private long pollingInterval = 60000L;
+    @ConfigProperty
+    private Long pollingInterval = 60000L;
 
     /**
      * The maximum number of messages
      */
-    private int maxMessages = 1;
+    @ConfigProperty
+    private Integer maxMessages = 1;
 
     /**
      * Enable JavaMail debugging
      */
-    private Boolean debug;
+    @ConfigProperty
+    private Boolean debug = false;
 
     /**
      * Flush - for pop3 flush the mailbox after checking
      */
-    private boolean flush = Boolean.TRUE;
+    @ConfigProperty
+    private Boolean flush = Boolean.TRUE;
 
     /**
      * Starttls - ssl
      */
-    private boolean starttls;
+    @ConfigProperty
+    private Boolean starttls = false;
 
     /**
      * The port
      */
-    private int port;
+    @ConfigProperty
+    private Integer port;
 
     /**
      * Constructor
@@ -282,7 +297,7 @@ public class MailActivationSpec implements ActivationSpec, Serializable {
      * @return The value
      */
     public int getPort() {
-        return port;
+        return port == null ? 0 : port;
     }
 
     /**
@@ -343,7 +358,7 @@ public class MailActivationSpec implements ActivationSpec, Serializable {
      * Set the resource adapter
      *
      * @param ra The value
-     * @throws ResourceException Thrown if an error occurs
+     * @throws javax.resource.ResourceException Thrown if an error occurs
      */
     public void setResourceAdapter(ResourceAdapter ra) throws ResourceException {
         this.ra = ra;
@@ -352,7 +367,7 @@ public class MailActivationSpec implements ActivationSpec, Serializable {
     /**
      * Validate
      *
-     * @throws InvalidPropertyException Thrown if an error occurs
+     * @throws javax.resource.spi.InvalidPropertyException Thrown if an error occurs
      */
     public void validate() throws InvalidPropertyException {
     }
