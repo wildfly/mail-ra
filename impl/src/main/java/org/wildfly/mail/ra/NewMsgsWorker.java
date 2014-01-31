@@ -36,6 +36,7 @@ import java.util.concurrent.PriorityBlockingQueue;
  *
  * @author <a href="mailto:scott.stark@jboss.org">Scott Stark</a>
  * @author <a href="mailto:jesper.pedersen@jboss.org">Jesper Pedersen</a>
+ * @author <a href="mailto:mluksa@redhat.com">Marko Luksa</a>
  */
 public class NewMsgsWorker implements Work, WorkListener {
     private static Logger log = Logger.getLogger(NewMsgsWorker.class);
@@ -149,6 +150,7 @@ public class NewMsgsWorker implements Work, WorkListener {
 
         MailActivation activation = (MailActivation) e.getWork();
         try {
+            activation.unrelease();
             watch(activation);
         } catch (InterruptedException ex) {
             log.warn("Failed to reschedule new msg check", ex);

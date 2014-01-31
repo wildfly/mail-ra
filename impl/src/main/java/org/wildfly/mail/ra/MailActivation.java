@@ -35,6 +35,7 @@ import org.jboss.logging.Logger;
  *
  * @author <a href="mailto:scott.stark@jboss.org">Scott Stark</a>
  * @author <a href="mailto:jesper.pedersen@jboss.org">Jesper Pedersen</a>
+ * @author <a href="mailto:mluksa@redhat.com">Marko Luksa</a>
  */
 public class MailActivation implements Comparable, Work {
     /**
@@ -178,5 +179,9 @@ public class MailActivation implements Comparable, Work {
                 endpoint.release();
             }
         }
+    }
+
+    public void unrelease() {
+        released = false;
     }
 }
