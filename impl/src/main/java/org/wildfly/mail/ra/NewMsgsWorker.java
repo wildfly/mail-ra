@@ -104,7 +104,8 @@ public class NewMsgsWorker implements Work, WorkListener {
                 // Now schedule excecution of the new msg check
                 mgr.scheduleWork(ma, WorkManager.INDEFINITE, null, this);
             } catch (InterruptedException e) {
-                log.warn("Interrupted waiting for new msg check", e);
+                log.debug("Interrupted waiting for new msg check. NewMsgsWorker will stop checking for new messages.");
+                Thread.currentThread().interrupt();
             } catch (WorkException e) {
                 log.warn("Failed to schedule new msg check", e);
             }
