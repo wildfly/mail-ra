@@ -374,28 +374,28 @@ public class MailActivationSpec implements ActivationSpec, Serializable {
      * @return The value
      */
     public String toString() {
-        StringBuffer tmp = new StringBuffer("MailActivationSpec(");
-        tmp.append("mailServer=");
-        tmp.append(mailServer);
-        tmp.append(", storeProtocol=");
-        tmp.append(storeProtocol);
-        tmp.append(", mailFolder=");
-        tmp.append(mailFolder);
-        tmp.append(", pollingInterval=");
-        tmp.append(pollingInterval);
-        tmp.append(", messageSelector=");
-        tmp.append(messageSelector);
-        tmp.append(", userName=");
-        tmp.append(userName);
-        tmp.append(", maxMessages=");
-        tmp.append(maxMessages);
-        tmp.append(", debug=");
-        tmp.append(debug);
-        tmp.append(", starttls=");
-        tmp.append(starttls);
-        tmp.append(", port=");
-        tmp.append(port);
-        tmp.append(")");
-        return tmp.toString();
+        return "MailActivationSpec(" +
+                "mailServer=" +
+                mailServer +
+                ", storeProtocol=" +
+                storeProtocol +
+                ", mailFolder=" +
+                mailFolder +
+                ", pollingInterval=" +
+                pollingInterval +
+                ", messageSelector=" +
+                messageSelector +
+                ", userName=" +
+                userName +
+                ", maxMessages=" +
+                maxMessages +
+                ", debug=" +
+                debug +
+                ", starttls=" +
+                starttls +
+                ", port=" +
+                port +
+                ")";
+
     }
 }

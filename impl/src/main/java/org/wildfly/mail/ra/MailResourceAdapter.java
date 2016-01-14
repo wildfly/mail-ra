@@ -97,9 +97,9 @@ public class MailResourceAdapter implements ResourceAdapter {
      */
     public MailResourceAdapter() {
         this.ctx = null;
-        this.activations = new ConcurrentHashMap<MailActivationSpec, MailActivation>();
+        this.activations = new ConcurrentHashMap<>();
         this.newMsgsWorker = null;
-        this.queueSize = Integer.valueOf(1024);
+        this.queueSize = 1024;
     }
 
     /**
@@ -117,7 +117,7 @@ public class MailResourceAdapter implements ResourceAdapter {
      * @param v The value
      */
     public void setQueueSize(Integer v) {
-        if (v != null && v.intValue() > 0) { queueSize = v; }
+        if (v != null && v > 0) { queueSize = v; }
     }
 
     /**

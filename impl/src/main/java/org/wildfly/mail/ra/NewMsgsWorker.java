@@ -51,7 +51,7 @@ public class NewMsgsWorker implements Work, WorkListener {
      */
     public NewMsgsWorker(WorkManager mgr, Integer queueSize) {
         this.mgr = mgr;
-        this.pollQueue = new PriorityBlockingQueue<MailActivation>(queueSize.intValue());
+        this.pollQueue = new PriorityBlockingQueue<>(queueSize);
     }
 
     /**

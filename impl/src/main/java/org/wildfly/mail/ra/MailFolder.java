@@ -92,8 +92,7 @@ public abstract class MailFolder implements Iterator {
         folder = store.getFolder(folderName);
 
         if (folder == null || (!this.folder.exists())) {
-            MessagingException e = new MessagingException("Failed to find folder: " + folderName);
-            throw e;
+            throw new MessagingException("Failed to find folder: " + folderName);
         }
 
         folder.open(Folder.READ_WRITE);
@@ -103,7 +102,7 @@ public abstract class MailFolder implements Iterator {
     /**
      * Closes the mail session
      *
-     * @throws MessagingException Thrown if an error occurs duing close
+     * @throws MessagingException Thrown if an error occurs during close
      */
     public void close() throws MessagingException {
         close(true);

@@ -50,7 +50,7 @@ public class MailActivation implements Comparable, Work {
     private boolean released;
 
     /**
-     * The time at which the next new msgs check should be performed
+     * The time at which the next new messages check should be performed
      */
     private long nextNewMsgCheckTime;
 
@@ -134,7 +134,7 @@ public class MailActivation implements Comparable, Work {
     public void run() {
         released = false;
 
-        log.tracef("Begin new msgs check");
+        log.tracef("Begin new messages check");
 
         try {
             MailFolder mailFolder = MailFolder.getInstance(spec);
@@ -150,7 +150,7 @@ public class MailActivation implements Comparable, Work {
             log.error("Failed to execute folder check, spec=" + spec);
         }
 
-        log.tracef("End new msgs check");
+        log.tracef("End new messages check");
     }
 
     /**
